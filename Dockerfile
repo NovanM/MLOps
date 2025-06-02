@@ -1,22 +1,21 @@
-# Use an official alpine nodeJS image as the base image
-FROM node:alpine
-
-# Gunakan image Python
+# Gunakan image Python saja (hapus node:alpine yang tidak perlu)
 FROM python:3.10-slim
 
-# Set working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Copy the rest of the application code into the container
-COPY . .
+# Copy requirements terlebih dahulu untuk better caching
+COPY requirements.txt .
 
 # Install dependencies Python
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Expose the app on a port
-EXPOSE 5000
+# Copy semua file aplikasi
+COPY . .
 
-# Command that runs the app
+# Expose port yang sama dengan app.py (3000, bukan 5000)
+EXPOSE 3000
+
+# Command untuk menjalankan aplikasi
 CMD ["python", "app.py"]
-

@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  jenkins:
+    build:
+      context: ./jenkins
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+    restart: unless-stopped
+
+  app:
+    build:
+      context: .
+    container_name: ml_app
+    ports:
+      - "3000:3000"  # Sesuaikan dengan port aplikasi Python kamu
+    volumes:
+      - .:/app
+    restart: unless-stopped
+    depends_on:
+      - jenkins
