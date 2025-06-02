@@ -1,5 +1,6 @@
 # MLOps
 # MLOps Project with Jenkins CI/CD Pipeline
+mlops2
 
 Proyek MLOps ini menggunakan Jenkins untuk mengotomatisasi proses CI/CD dengan integrasi GitHub webhook. Pipeline ini memungkinkan deployment otomatis setiap kali ada perubahan kode yang di-push ke repository.
 
