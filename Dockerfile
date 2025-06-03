@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy requirements terlebih dahulu untuk better caching
 COPY requirements.txt .
-
+RUN apt-get update && apt-get install -y curl --no-install-recommends && rm -rf /var/lib/apt/lists/*
 # Install dependencies Python
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
