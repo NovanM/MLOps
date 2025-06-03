@@ -71,15 +71,9 @@ def home():
     """Home page"""
     return render_template("index.html")
 
-@app.route("/health")
+@app.route('/health')
 def health():
-    """Health check endpoint"""
-    model_status = "loaded" if model is not None else "not_loaded"
-    return jsonify({
-        "status": "healthy", 
-        "model_status": model_status,
-        "port": 3000
-    })
+    return {"status": "healthy"}, 200
 
 @app.route("/predict", methods=["POST"])
 def predict():
