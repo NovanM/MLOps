@@ -72,8 +72,8 @@ def home():
     return render_template("index.html")
 
 @app.route('/health')
-def health():
-    return {"status": "healthy"}, 200
+def health_check():
+    return {'status': 'healthy', 'model_loaded': model is not None}, 200
 
 @app.route("/predict", methods=["POST"])
 def predict():
